@@ -56,7 +56,7 @@ def creds():
 
 @app.route("/")
 def home():
-    return send_from_directory(".", "index.htm")
+    return send_from_directory(".", "index.html")
 
 
 @app.post("/api/signup")
