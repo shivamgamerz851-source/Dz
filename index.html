@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DANGER ZONE // Games & Apps</title>
+<style>
+:root{--bg:#0a0f24;--card:#151c3a;--a:#7c5cff;--b:#22d3ee;--c:#ff4d8d;--d:#ffb020;--fg:#eef1ff;--dim:#8f9bc7;--ln:#2a3566;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a0f24;--card:#151c3a;--fg:#eef1ff}}
+:root[data-theme="dark"]{--bg:#0a0f24;--card:#151c3a;--fg:#eef1ff}
+html{scroll-padding-top:70px;scroll-behavior:smooth}*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 80% -10%,#3a1d7a 0,transparent 45%),radial-gradient(circle at 0 30%,#0b3b5a 0,transparent 40%),var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh}
+.w{max-width:860px;margin:0 auto;padding:0 14px 40px}
+.top{display:flex;gap:10px;align-items:center;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:20;padding:8px 0}
+input,textarea,select{width:100%;background:var(--card);border:1px solid var(--ln);border-radius:10px;padding:11px 14px;color:var(--fg);font:inherit;outline:0;margin:5px 0}
+.top input{flex:1;min-width:0;border-radius:24px;border-color:var(--a);margin:0}
+.bt,.pad button,.bd button,.mg button{background:var(--card);color:var(--fg);border:1px solid var(--a);border-radius:10px;padding:11px 14px;font:inherit;font-size:16px}
+.bt:active,.pad button:active,.bd button:active{background:var(--a)}
+.lg{flex:none;font-size:13px;padding:10px 12px;border-radius:20px;border-color:var(--c)}
+.dots{width:44px;height:44px;flex:none;border-radius:50%;background:var(--card);border:1px solid var(--a);display:flex;flex-direction:column;gap:5px;align-items:center;justify-content:center;transition:transform .6s cubic-bezier(.2,.9,.3,1.3),box-shadow .4s;padding:0}
+.dots i{width:6px;height:6px;border-radius:50%;background:var(--b);box-shadow:0 0 8px var(--b);animation:w 1.2s ease-in-out infinite}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes w{50%{transform:translateX(6px);background:var(--c)}}
+.dots.on{transform:rotate(90deg) scale(1.12);box-shadow:0 0 22px var(--a)}
+.dr{position:fixed;top:0;left:0;bottom:0;width:250px;background:var(--card);border-right:2px solid var(--a);padding:calc(76px + env(safe-area-inset-top,0px)) 18px 20px;transform:translateX(-105%);transition:transform .5s cubic-bezier(.2,.9,.3,1.15);z-index:30;box-shadow:10px 0 40px rgba(124,92,255,.4)}
+.dr.on{transform:none}
+.dr a{display:block;color:var(--fg);text-decoration:none;font-size:20px;font-weight:700;padding:14px 4px;border-bottom:1px solid var(--ln);opacity:0;transform:translateX(-34px);transition:.45s}
+.dr.on a{opacity:1;transform:none}
+.dr.on a:nth-child(1){transition-delay:.15s}.dr.on a:nth-child(2){transition-delay:.25s}.dr.on a:nth-child(3){transition-delay:.35s}.dr.on a:nth-child(4){transition-delay:.45s}.dr.on a:nth-child(5){transition-delay:.55s}.dr.on a:nth-child(6){transition-delay:.65s}.dr.on a:nth-child(7){transition-delay:.75s}.dr.on a:nth-child(8){transition-delay:.85s}.dr.on a:nth-child(9){transition-delay:.95s}.dr.on a:nth-child(10){transition-delay:1.05s}.dr{overflow-y:auto}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.65);opacity:0;pointer-events:none;transition:.3s;z-index:25}.ov.on{opacity:1;pointer-events:auto}
+.hero{text-align:center;padding:22px 6px 6px}
+.hero small{color:var(--d);letter-spacing:4px;font-size:11px}
+h1{font-size:clamp(38px,12vw,68px);margin:6px 0;line-height:1;font-weight:900;background:linear-gradient(90deg,var(--c),var(--d),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent;animation:p 3s ease-in-out infinite}
+@keyframes p{50%{filter:drop-shadow(0 0 18px rgba(124,92,255,.9))}}
+.hero p{color:var(--dim);margin:4px 0}
+h2{margin:26px 0 10px;font-size:22px;border-left:5px solid var(--c);padding-left:10px}
+.row{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}
+.t{flex:none;width:116px;scroll-snap-align:start;background:linear-gradient(160deg,var(--card),#1c2550);border:1px solid var(--ln);border-radius:14px;padding:14px 8px;text-align:center;color:var(--fg);font:inherit;transition:.25s}
+.t:active{transform:scale(.94);border-color:var(--b);box-shadow:0 0 16px var(--b)}
+.t span{display:block;font-size:34px}.t b{font-size:13px}
+@keyframes dn{from{opacity:0;transform:translateY(-46px)}}.top{animation:dn .6s backwards}.hero{animation:dn .8s .1s backwards}h2{animation:dn .6s .3s backwards}.t{animation:dn .6s backwards}
+.md{position:fixed;inset:0;background:var(--bg);z-index:50;display:none;flex-direction:column;padding-top:env(safe-area-inset-top,0px)}
+.md.on{display:flex;animation:up .35s}@keyframes up{from{transform:translateY(40px);opacity:0}}
+.mh{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--ln);font-size:20px;font-weight:800}
+.mbd{flex:1;overflow:auto;padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px));text-align:center;max-width:460px;width:100%;margin:0 auto}
+canvas{background:#050816;border:2px solid var(--b);border-radius:10px;max-width:100%;touch-action:none}
+.pad{display:grid;grid-template-columns:repeat(3,60px);gap:6px;justify-content:center;margin-top:10px}
+.bd{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:270px;margin:10px auto}.bd button{aspect-ratio:1;font-size:34px}
+.mg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:320px;margin:10px auto}.mg button{aspect-ratio:1;font-size:28px;padding:0}
+.cg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.cg button{font-size:20px;padding:14px 0}
+.out{background:var(--card);border:1px dashed var(--ln);border-radius:10px;padding:12px;margin:10px 0;word-break:break-all;text-align:left;white-space:pre-wrap;min-height:44px}
+.big{font-size:40px;font-weight:800;color:var(--d)}
+#nr,.err{color:var(--c)}#nr{display:none;text-align:center;padding:16px}
+</style></head><body>
+<div class="w">
+<div class="top"><button class="dots" id="mb" aria-label="Menu"><i></i><i></i><i></i></button><input id="q" type="search" placeholder="Search apps and games..." autocomplete="off"><button class="bt lg" id="lg">Login</button></div>
+<div class="ov" id="ov"></div>
+<div class="dr" id="dr"><a href="#r-Games">Games</a><a href="#r-PopularGames">Popular Games</a><a href="#r-ClassicGames">Classic Games</a><a href="#r-Tools">Tools</a><a href="#r-CodeTools">Code Tools</a><a href="#r-Creative">Creative</a><a href="#r-AITools">AI Tools</a><a href="#r-Emulators">Emulators</a><a href="#" id="ab">About</a><a href="#" id="dl">Login</a></div>
+<div class="hero"><small>// ENTER AT YOUR OWN RISK //</small><h1>DANGER<br>ZONE</h1><p id="hi">Play, build and explore. 150+ games, tools and AI apps.</p></div>
+<div id="rows"></div><div id="nr">No results found</div>
+</div>
+<div class="md" id="md"><div class="mh"><span id="mt"></span><button class="bt" id="mx">✕</button></div><div class="mbd" id="mbody"></div></div>
+<div class="md" id="am"><div class="mh"><span>Account</span><button class="bt" id="ax">✕</button></div><div class="mbd">
+<button class="bt" id="gg" style="width:100%;margin:4px 0;border-color:#4285f4">G &nbsp;Continue with Google</button><button class="bt" id="dc" style="width:100%;margin:4px 0;border-color:#5865f2">Continue with Discord</button><p style="color:var(--dim)">or use your email</p>
+<input id="au" type="email" placeholder="Email" autocomplete="email"><input id="ap" type="password" placeholder="Password (4+ chars)" autocomplete="current-password">
+<div id="am2" class="err"></div>
+<div style="display:flex;gap:8px"><button class="bt" id="ali" style="flex:1">Login</button><button class="bt" id="asu" style="flex:1;border-color:var(--c)">Sign up</button></div>
+<p style="color:var(--dim);font-size:12px">Demo login: accounts are saved only on this device.</p></div></div>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)},A=[],cl=null;
+function S(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+function reg(c,i,n,f){A.push({c:c,i:i,n:n,f:f})}
+function sha(t){return crypto.subtle.digest('SHA-256',new TextEncoder().encode(t)).then(function(b){return Array.from(new Uint8Array(b)).map(function(v){return v.toString(16).padStart(2,'0')}).join('')})}
+function rnd(n){return Math.floor(Math.random()*n)}
+// ---- GAMES
+reg('Games','🐍','Snake',function(e){
+e.innerHTML='<p>Score: <b id=sc>0</b></p><canvas id=cv width=300 height=300></canvas><div class=pad><span></span><button data-d=u>▲</button><span></span><button data-d=l>◀</button><button data-d=d>▼</button><button data-d=r>▶</button></div>';
+var x=$('cv').getContext('2d'),N=15,sn=[{x:7,y:7},{x:6,y:7}],d={x:1,y:0},nd=d,f={x:3,y:3},sc=0,al=1;
+function dr(){x.fillStyle='#050816';x.fillRect(0,0,300,300);x.fillStyle='#ff4d8d';x.fillRect(f.x*20+3,f.y*20+3,14,14);sn.forEach(function(s,i){x.fillStyle=i?'#22d3ee':'#ffb020';x.fillRect(s.x*20+1,s.y*20+1,18,18)});if(!al){x.fillStyle='rgba(0,0,0,.6)';x.fillRect(0,0,300,300);x.fillStyle='#fff';x.font='bold 28px sans-serif';x.textAlign='center';x.fillText('GAME OVER',150,155)}}
+var t=setInterval(function(){if(!al)return;d=nd;var h={x:sn[0].x+d.x,y:sn[0].y+d.y};if(h.x<0||h.y<0||h.x>=N||h.y>=N||sn.some(function(s){return s.x==h.x&&s.y==h.y})){al=0;return dr()}sn.unshift(h);if(h.x==f.x&&h.y==f.y){sc++;$('sc').textContent=sc;f={x:rnd(N),y:rnd(N)}}else sn.pop();dr()},130);
+cl=function(){clearInterval(t)};
+function tn(k){var m={u:{x:0,y:-1},d:{x:0,y:1},l:{x:-1,y:0},r:{x:1,y:0}}[k];if(m.x!=-d.x||m.y!=-d.y)nd=m}
+e.querySelectorAll('.pad button').forEach(function(b){b.onclick=function(){tn(b.dataset.d)}});
+var s0;$('cv').addEventListener('touchstart',function(ev){s0=ev.touches[0]},{passive:true});
+$('cv').addEventListener('touchend',function(ev){var q=ev.changedTouches[0],dx=q.clientX-s0.clientX,dy=q.clientY-s0.clientY;if(Math.max(Math.abs(dx),Math.abs(dy))>20)tn(Math.abs(dx)>Math.abs(dy)?(dx>0?'r':'l'):(dy>0?'d':'u'))},{passive:true});dr()});
+reg('Games','⚡','Reaction',function(e){
+e.innerHTML='<p>Best: <b id=bs>--</b></p><button id=rx class=bt style="width:100%;height:140px;font-size:22px;background:#ff4d8d">TAP TO START</button>';
+var r=$('rx'),st=0,ts,to,best=null;
+r.onclick=function(){if(st==0){st=1;r.textContent='WAIT FOR GREEN...';r.style.background='#ff4d8d';to=setTimeout(function(){st=2;ts=Date.now();r.textContent='TAP NOW!';r.style.background='#17c964'},1000+Math.random()*2500)}
+else if(st==1){clearTimeout(to);st=0;r.textContent='Too early! Tap to retry'}
+else{var ms=Date.now()-ts;if(best==null||ms<best){best=ms;$('bs').textContent=ms+' ms'}st=0;r.textContent=ms+' ms. Tap to play again';r.style.background='#7c5cff'}};
+cl=function(){clearTimeout(to)}});
+reg('Games','❌','Tic-Tac-Toe',function(e,re){
+e.innerHTML='<p id=ts>Turn: X</p><div class=bd id=bd></div><button class=bt id=tr>Restart</button>';
+var b=Array(9).fill(''),p='X',over=0;
+function rn(){$('bd').innerHTML=b.map(function(v,i){return '<button data-i='+i+'>'+v+'</button>'}).join('')}
+$('bd').onclick=function(ev){var i=ev.target.dataset.i;if(i==null||b[i]||over)return;b[i]=p;
+var w=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]].some(function(l){return l.every(function(k){return b[k]==p})});
+if(w){over=1;$('ts').textContent=p+' wins!'}else if(b.every(Boolean)){over=1;$('ts').textContent='Draw'}else{p=p=='X'?'O':'X';$('ts').textContent='Turn: '+p}rn()};
+$('tr').onclick=re;rn()});
+reg('Games','🧠','Memory Match',function(e,re){
+var em='🍎🍌🍇🍒🥝🍉🍓🍍'.match(/./gu),dk=em.concat(em).sort(function(){return Math.random()-.5}),o=Array(16).fill(0),sel=[],lk=0,mv=0;
+e.innerHTML='<p>Moves: <b id=mv>0</b></p><div class=mg id=mg></div><button class=bt id=mr>Restart</button>';
+function rn(){$('mg').innerHTML=o.map(function(v,i){return '<button data-i='+i+'>'+(v?dk[i]:'?')+'</button>'}).join('')}
+$('mg').onclick=function(ev){var i=+ev.target.dataset.i;if(isNaN(i)||lk||o[i])return;o[i]=1;sel.push(i);rn();
+if(sel.length==2){mv++;$('mv').textContent=mv;var a=sel[0],c=sel[1];sel=[];if(dk[a]==dk[c]){o[a]=o[c]=2;rn();if(o.every(function(v){return v==2}))$('mv').textContent=mv+' - You won!'}else{lk=1;setTimeout(function(){o[a]=o[c]=0;lk=0;rn()},700)}}};
+$('mr').onclick=re;rn()});
+reg('Games','🎯','Number Guess',function(e,re){
+var n=1+rnd(100),k=0;e.innerHTML='<p>Guess a number from 1 to 100</p><input id=gi type=number><button class=bt id=gb>Guess</button><div class=out id=go>...</div>';
+$('gb').onclick=function(){var g=+$('gi').value;if(!g)return;k++;$('go').textContent=g==n?'Correct in '+k+' tries! 🎉':(g<n?'Higher ⬆':'Lower ⬇')}});
+reg('Games','✌️','Rock Paper Scissors',function(e){
+e.innerHTML='<div class=bd id=rp><button data-i=0>✊</button><button data-i=1>✋</button><button data-i=2>✌️</button></div><div class=out id=ro>Pick one</div>';
+var m=['✊','✋','✌️'];$('rp').onclick=function(ev){var u=ev.target.dataset.i;if(u==null)return;var c=rnd(3);$('ro').textContent='You '+m[u]+'  vs  CPU '+m[c]+'\n'+(u==c?'Draw':((u-c+3)%3==1?'You win! 🎉':'CPU wins'))}});
+reg('Games','🎲','Dice & Coin',function(e){
+e.innerHTML='<div class=big id=dv>🎲</div><div style="display:flex;gap:8px"><button class=bt id=d1 style="flex:1">Roll dice</button><button class=bt id=d2 style="flex:1">Flip coin</button></div>';
+$('d1').onclick=function(){$('dv').textContent='🎲 '+(1+rnd(6))};$('d2').onclick=function(){$('dv').textContent=rnd(2)?'🪙 Heads':'🪙 Tails'}});
+// ---- TOOLS
+reg('Tools','🧮','Calculator',function(e){
+var k='7,8,9,/,4,5,6,*,1,2,3,-,0,.,=,+,(,),C,⌫'.split(',');
+e.innerHTML='<div class="out big" id=cd style="text-align:right">0</div><div class=cg id=cg>'+k.map(function(v){return '<button>'+v+'</button>'}).join('')+'</div>';
+var s='';$('cg').onclick=function(ev){var v=ev.target.textContent;if(ev.target.tagName!='BUTTON')return;
+if(v=='C')s='';else if(v=='⌫')s=s.slice(0,-1);else if(v=='='){try{if(/^[0-9+\-*\/.() ]+$/.test(s))s=String(Function('return '+s)())}catch(x){s='Error'}}else s+=v;$('cd').textContent=s||'0'}});
+reg('Tools','⏱','Stopwatch',function(e){
+e.innerHTML='<div class=big id=sw>00:00.00</div><div style="display:flex;gap:8px"><button class=bt id=s1 style="flex:1">Start</button><button class=bt id=s2 style="flex:1">Stop</button><button class=bt id=s3 style="flex:1">Reset</button></div>';
+var iv,el=0,t0;function up(){var t=el+(iv?Date.now()-t0:0),m=Math.floor(t/60000),s=Math.floor(t%60000/1000),c=Math.floor(t%1000/10);$('sw').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')+'.'+String(c).padStart(2,'0')}
+$('s1').onclick=function(){if(iv)return;t0=Date.now();iv=setInterval(up,40)};$('s2').onclick=function(){if(!iv)return;clearInterval(iv);el+=Date.now()-t0;iv=0};$('s3').onclick=function(){clearInterval(iv);iv=0;el=0;up()};
+cl=function(){clearInterval(iv)}});
+reg('Tools','📝','Notes',function(e){
+e.innerHTML='<textarea id=nt rows=12 placeholder="Write here. Saved automatically on this device."></textarea>';
+$('nt').value=S('dz_n')||'';$('nt').oninput=function(){S('dz_n',this.value)}});
+reg('Tools','🔑','Password Maker',function(e){
+e.innerHTML='<label>Length: <b id=pv>16</b></label><input type=range id=pl min=8 max=48 value=16><button class=bt id=pg style="width:100%">Generate</button><div class=out id=po>...</div>';
+function g(){var s='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*?',n=+$('pl').value,r=new Uint32Array(n),o='';crypto.getRandomValues(r);for(var i=0;i<n;i++)o+=s[r[i]%s.length];$('po').textContent=o}
+$('pl').oninput=function(){$('pv').textContent=this.value};$('pg').onclick=g;g()});
+reg('Tools','#️⃣','Hash (SHA-256)',function(e){
+e.innerHTML='<textarea id=hi2 rows=4 placeholder="Type text..."></textarea><div class=out id=ho>...</div>';
+$('hi2').oninput=function(){var v=this.value;if(!v){$('ho').textContent='...';return}sha(v).then(function(h){$('ho').textContent=h})}});
+reg('Tools','🔢','Word Counter',function(e){
+e.innerHTML='<textarea id=wc rows=8 placeholder="Paste text..."></textarea><div class=out id=wo>Words: 0 | Characters: 0</div>';
+$('wc').oninput=function(){var v=this.value.trim();$('wo').textContent='Words: '+(v?v.split(/\s+/).length:0)+' | Characters: '+this.value.length}});
+// ---- CREATIVE
+reg('Creative','🎬','Video Prompt Maker',function(e){
+function o(a){return a.map(function(v){return '<option>'+v+'</option>'}).join('')}
+e.innerHTML='<input id=vs placeholder="What happens? e.g. a dragon flying over a city"><select id=v1>'+o(['Cinematic','Anime','3D animation','Documentary','Retro film','Neon cyberpunk'])+'</select><select id=v2>'+o(['Slow zoom in','Drone aerial shot','Handheld camera','Tracking shot','Wide static shot'])+'</select><select id=v3>'+o(['Epic','Calm','Dark and moody','Fun and bright','Mysterious'])+'</select><button class=bt id=vb style="width:100%">Make prompt</button><div class=out id=vo>...</div><button class=bt id=vc>Copy</button><p style="color:var(--dim);font-size:12px">Paste this prompt into any AI video tool.</p>';
+$('vb').onclick=function(){var s=$('vs').value.trim();$('vo').textContent=s?(s+'. '+$('v1').value+' style, '+$('v2').value.toLowerCase()+', '+$('v3').value.toLowerCase()+' mood, high detail, smooth motion, 4K.'):'Describe the scene first'};
+$('vc').onclick=function(){try{navigator.clipboard.writeText($('vo').textContent);$('vc').textContent='Copied ✓'}catch(x){}}});
+reg('Creative','🎨','Color Picker',function(e){
+e.innerHTML='<input type=color id=cp value="#7c5cff" style="height:120px"><div class="out big" id=cv2 style="text-align:center">#7c5cff</div>';
+$('cp').oninput=function(){$('cv2').textContent=this.value;$('cv2').style.color=this.value}});
+reg('Creative','🔠','Text Case',function(e){
+e.innerHTML='<textarea id=tc rows=5 placeholder="Type text..."></textarea><div style="display:flex;gap:8px"><button class=bt id=c1 style="flex:1">UPPER</button><button class=bt id=c2 style="flex:1">lower</button><button class=bt id=c3 style="flex:1">Title</button></div>';
+function m(f){var t=$('tc');t.value=f(t.value)}$('c1').onclick=function(){m(function(s){return s.toUpperCase()})};$('c2').onclick=function(){m(function(s){return s.toLowerCase()})};
+$('c3').onclick=function(){m(function(s){return s.toLowerCase().replace(/(^|\s)\S/g,function(c){return c.toUpperCase()})})}});
+// ---- RENDER ROWS
+function info(c,l){l.forEach(function(s){var p=s.split('|');reg(c,p[1],p[0],function(e){e.innerHTML='<div class=big>'+p[1]+'</div><h3>'+p[0]+'</h3><p style="color:var(--dim)">'+p[2]+'</p><a class=bt style="display:block;text-decoration:none;margin-top:12px" href="'+(p[3]||'https://play.google.com/store/search?q='+encodeURIComponent(p[0])+'&c=apps')+'" target=_blank rel=noopener>Open page ↗</a><p style="color:var(--dim);font-size:12px">Downloads happen only on the official store or site. This page just shows details.</p>'})})}
+info('Popular Games',['Forza Horizon 5|🏎|Open-world racing in Mexico with 500+ cars. Xbox and PC.|https://forza.net/horizon','GTA V|🚗|Open-world action in Los Santos. PC and console.|https://www.rockstargames.com/gta-v','Red Dead Redemption 2|🤠|Wild West open-world story epic.|https://www.rockstargames.com/reddeadredemption2','Minecraft|⛏|Build, mine and survive in blocky worlds.|https://www.minecraft.net','Fortnite|🪂|Battle royale and creative modes. Free to play.|https://www.fortnite.com','Roblox|🧱|Millions of user-made games. Free.|https://www.roblox.com','PUBG Mobile|🔫|Battle royale on mobile.|https://www.pubgmobile.com','COD Mobile|🎖|Call of Duty multiplayer on mobile.|https://www.callofduty.com/mobile','Free Fire|🔥|Fast 10-minute battle royale.|https://ff.garena.com','Valorant|🎯|5v5 tactical shooter with agents.|https://playvalorant.com','Counter-Strike 2|💣|Classic competitive FPS. Free on Steam.|https://www.counter-strike.net','Apex Legends|🦾|Hero battle royale. Free.|https://www.ea.com/games/apex-legends','EA SPORTS FC|⚽|Football with real clubs and players.|https://www.ea.com/games/ea-sports-fc','Need for Speed|🏁|Street racing and police chases.|https://www.ea.com/games/need-for-speed','Asphalt 9|💨|Arcade racing with supercars.|https://www.gameloft.com','Genshin Impact|🗡|Open-world anime RPG. Free.|https://genshin.hoyoverse.com','Among Us|🚀|Find the impostor with friends.|https://www.innersloth.com','Clash of Clans|🏰|Build a village and battle clans.|https://supercell.com/en/games/clashofclans','Clash Royale|👑|Real-time card battles.|https://supercell.com/en/games/clashroyale','Brawl Stars|⭐|Fast 3v3 brawler.|https://supercell.com/en/games/brawlstars','Candy Crush|🍬|Match-3 puzzle classic.|https://www.king.com','Subway Surfers|🛹|Endless runner.|https://www.sybo.com','Pokemon GO|🐾|Catch Pokemon in the real world.|https://pokemongolive.com','Mario Kart|🍄|Fun kart racing on Nintendo.|https://www.nintendo.com','The Witcher 3|⚔|Story-rich fantasy RPG.|https://www.thewitcher.com','Cyberpunk 2077|🌆|Futuristic open-world RPG.|https://www.cyberpunk.net','Elden Ring|💀|Hard open-world action RPG.|https://en.bandainamcoent.eu/elden-ring/elden-ring','Hill Climb Racing|🚙|Physics driving game.|https://fingersoft.com']);
+reg('Code Tools','{ }','JSON Formatter',function(e){e.innerHTML='<textarea id=jj rows=8 placeholder="Paste JSON"></textarea><div style="display:flex;gap:8px"><button class=bt id=j1 style="flex:1">Format</button><button class=bt id=j2 style="flex:1">Minify</button></div><div class=out id=jo>...</div>';function g(n){try{var v=JSON.parse($('jj').value);$('jo').className='out';$('jo').textContent=JSON.stringify(v,null,n)}catch(x){$('jo').className='out err';$('jo').textContent='Invalid JSON: '+x.message}}$('j1').onclick=function(){g(2)};$('j2').onclick=function(){g(0)}});
+reg('Code Tools','🔐','Encode / Decode',function(e){e.innerHTML='<textarea id=ed rows=5 placeholder="Text"></textarea><div class=cg style="grid-template-columns:1fr 1fr"><button class=bt data-m=be>Base64 encode</button><button class=bt data-m=bd>Base64 decode</button><button class=bt data-m=ue>URL encode</button><button class=bt data-m=ud>URL decode</button></div><div class=out id=eo>...</div>';e.onclick=function(ev){var m=ev.target.dataset.m;if(!m)return;var v=$('ed').value,r;try{if(m=='be')r=btoa(String.fromCharCode.apply(null,new TextEncoder().encode(v)));else if(m=='bd'){var s=atob(v.trim()),a=new Uint8Array(s.length);for(var i=0;i<s.length;i++)a[i]=s.charCodeAt(i);r=new TextDecoder().decode(a)}else r=m=='ue'?encodeURIComponent(v):decodeURIComponent(v)}catch(x){r='Invalid input'}$('eo').textContent=r}});
+reg('Code Tools','🔍','Regex Tester',function(e){e.innerHTML='<input id=rg placeholder="Regex pattern"><input id=rf value=g placeholder=flags><textarea id=rt rows=5 placeholder="Test text"></textarea><div class=out id=ro2>...</div>';function u(){try{var m=$('rt').value.match(new RegExp($('rg').value,$('rf').value));$('ro2').className='out';$('ro2').textContent=m?m.length+' match(es): '+m.join(' | '):'No match'}catch(x){$('ro2').className='out err';$('ro2').textContent=x.message}}['rg','rf','rt'].forEach(function(i){$(i).oninput=u})});
+reg('Code Tools','🕒','Timestamp',function(e){e.innerHTML='<input id=ti placeholder="Unix seconds, e.g. 1700000000"><button class=bt id=tb style="width:100%">Convert</button><button class=bt id=tn style="width:100%;margin-top:6px">Use now</button><div class=out id=to2>...</div>';function c(){var v=+$('ti').value;$('to2').textContent=v?new Date(v*1000).toUTCString()+' | '+new Date(v*1000).toLocaleString():'Enter a number'}$('tb').onclick=c;$('tn').onclick=function(){$('ti').value=Math.floor(Date.now()/1000);c()}});
+reg('Code Tools','💻','HTML Playground',function(e){e.innerHTML='<textarea id=lh rows=7>&lt;h1 style="color:tomato"&gt;Hello!&lt;/h1&gt;&lt;script&gt;document.body.append(" JS works")&lt;/script&gt;</textarea><button class=bt id=lr style="width:100%">Run ▶</button><iframe id=lf sandbox="allow-scripts" style="width:100%;height:220px;border:1px solid var(--ln);border-radius:10px;background:#fff;margin-top:8px"></iframe>';function r(){$('lf').srcdoc=$('lh').value}$('lr').onclick=r;r()});
+info('Code Tools',['VS Code|🟦|Popular free code editor.|https://code.visualstudio.com','GitHub|🐙|Host and share code.|https://github.com','Replit|🌀|Code in the browser with AI help.|https://replit.com','CodePen|✒|Try HTML, CSS and JS online.|https://codepen.io','StackBlitz|⚡|Web dev IDE in your browser.|https://stackblitz.com','Postman|📮|Test and build APIs.|https://www.postman.com','Figma|🖌|UI and web design tool.|https://www.figma.com','Docker|🐳|Package apps in containers.|https://www.docker.com','Python|🐍|Beginner-friendly language.|https://www.python.org','Node.js|🟩|JavaScript on the server.|https://nodejs.org','Stack Overflow|📚|Coding questions and answers.|https://stackoverflow.com','MDN Docs|📖|Web development documentation.|https://developer.mozilla.org']);
+info('AI Tools',['ChatGPT|💬|AI chat, writing, images and code.|https://chatgpt.com','Claude|🟠|AI assistant for writing, code and analysis.|https://claude.ai','Gemini|✨|Google AI assistant.|https://gemini.google.com','Copilot|🪟|Microsoft AI assistant.|https://copilot.microsoft.com','Perplexity|🔎|AI search with sources.|https://www.perplexity.ai','Grok|🅧|AI chat from xAI.|https://grok.com','DeepSeek|🐋|Free AI chat and reasoning.|https://www.deepseek.com','Meta AI|♾|Meta AI assistant.|https://www.meta.ai','Midjourney|🖼|High-quality AI images.|https://www.midjourney.com','Leonardo AI|🎨|AI images and game art.|https://leonardo.ai','Adobe Firefly|🔥|AI images and design.|https://firefly.adobe.com','Ideogram|🔤|AI images with clear text.|https://ideogram.ai','Stable Diffusion|🌫|Open image models.|https://stability.ai','Runway|🎞|Pro AI video tools.|https://runwayml.com','Pika|⚡|Quick AI video clips.|https://pika.art','Luma Dream Machine|🌌|Text to video.|https://lumalabs.ai/dream-machine','Kling AI|🎥|Realistic AI video.|https://klingai.com','Hailuo AI|🐉|Text and image to video.|https://hailuoai.video','Sora|🌀|OpenAI video generator.|https://sora.com','HeyGen|🧑‍💼|AI avatar videos.|https://www.heygen.com','Synthesia|🎙|AI presenter videos.|https://www.synthesia.io','ElevenLabs|🔊|Realistic AI voices.|https://elevenlabs.io','Suno|🎵|Make songs with AI.|https://suno.com','Udio|🎶|AI music creation.|https://www.udio.com','Gamma|📊|AI slides and docs.|https://gamma.app','Notion AI|📝|AI notes and docs.|https://www.notion.com','Cursor|⌨|AI code editor.|https://cursor.com','GitHub Copilot|🤖|AI coding help.|https://github.com/features/copilot','Descript|✂|Edit video by editing text.|https://www.descript.com','CapCut|🎬|Free video editor with AI.|https://www.capcut.com']);
+info('Classic Games',['Super Mario Bros|🍄|1985 Nintendo platform classic.|https://en.wikipedia.org/wiki/Super_Mario_Bros.','Contra|🔫|1987 run-and-gun co-op legend.|https://en.wikipedia.org/wiki/Contra_(video_game)','Pac-Man|🟡|1980 arcade maze icon.|https://en.wikipedia.org/wiki/Pac-Man','Tetris|🧩|1984 falling-block puzzle.|https://en.wikipedia.org/wiki/Tetris','Sonic the Hedgehog|💨|1991 Sega speed classic.|https://en.wikipedia.org/wiki/Sonic_the_Hedgehog_(1991_video_game)','Street Fighter II|🥊|1991 fighting game that started a craze.|https://en.wikipedia.org/wiki/Street_Fighter_II','Mortal Kombat|🐉|1992 arcade fighter.|https://en.wikipedia.org/wiki/Mortal_Kombat_(1992_video_game)','Pokemon Red and Blue|🔴|1996 original Pokemon.|https://en.wikipedia.org/wiki/Pok%C3%A9mon_Red,_Blue,_and_Yellow','Zelda Ocarina of Time|🧝|1998 3D adventure classic.|https://en.wikipedia.org/wiki/The_Legend_of_Zelda:_Ocarina_of_Time','Prince of Persia|🏃|1989 cinematic platformer.|https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)','Road Rash|🏍|1991 bike racing brawler.|https://en.wikipedia.org/wiki/Road_Rash','Bomberman|💣|Classic maze bomb game.|https://en.wikipedia.org/wiki/Bomberman','Mega Man|🤖|8-bit action platformer.|https://en.wikipedia.org/wiki/Mega_Man_(video_game)','Donkey Kong|🦍|1981 arcade original.|https://en.wikipedia.org/wiki/Donkey_Kong_(video_game)','Space Invaders|👾|1978 arcade shooter.|https://en.wikipedia.org/wiki/Space_Invaders','Nokia Snake|🐍|The phone game everyone played.|https://en.wikipedia.org/wiki/Snake_(video_game_genre)','Counter-Strike 1.6|🎯|2000 legendary LAN shooter.|https://en.wikipedia.org/wiki/Counter-Strike_(video_game)','GTA Vice City|🌴|2002 80s open-world classic.|https://en.wikipedia.org/wiki/Grand_Theft_Auto:_Vice_City','Age of Empires II|🏰|1999 strategy classic.|https://en.wikipedia.org/wiki/Age_of_Empires_II','NFS Underground|🏎|2003 street racing.|https://en.wikipedia.org/wiki/Need_for_Speed:_Underground']);
+info('Mobile Games',['Temple Run 2|🏃|Endless jungle runner.','Mini Militia|🪖|2D multiplayer shooter.','8 Ball Pool|🎱|Online pool with friends.','Ludo King|🎲|Classic Ludo online.','Carrom Pool|⚪|Carrom multiplayer.','Real Racing 3|🏎|Realistic mobile racing.','Beach Buggy Racing 2|🏖|Fun kart racing.','Shadow Fight 2|🥷|Stylish fighting game.','Plants vs Zombies 2|🌻|Tower defense classic.','Angry Birds 2|🐦|Slingshot puzzle fun.','Fruit Ninja|🍉|Slice fruit fast.','Cut the Rope|🍬|Physics puzzle.','Monument Valley|🏛|Beautiful puzzle journey.','Geometry Dash|🔷|Rhythm platformer.','Stumble Guys|🏃|Party knockout racing.','Mobile Legends|⚔|5v5 MOBA.','Honor of Kings|👑|Popular MOBA.','Wild Rift|🌀|League of Legends on mobile.','Pokemon UNITE|⚡|Team battle game.','Dream League Soccer|⚽|Build your football club.','eFootball|🥅|Football by Konami.','Real Cricket 24|🏏|Cricket game.','Asphalt Legends|🏁|Arcade racing.','CarX Street|🚘|Open-world street racing.','Bus Simulator|🚌|Drive city buses.','Stardew Valley|🌾|Farming life sim.','Terraria|⛏|2D sandbox adventure.','Minecraft Bedrock|🧊|Pocket edition of Minecraft.','Lords Mobile|🛡|Strategy kingdom game.','Rise of Kingdoms|🏯|Civilization strategy.','Coin Master|🪙|Spin and raid villages.','Hay Day|🐔|Farm and trade.','Crossy Road|🐥|Endless hopper.','Dr. Driving|🚕|Simple driving tests.','Zooba|🐯|Animal battle royale.','Sky Children of the Light|☁|Peaceful adventure.','Alto Odyssey|🏂|Relaxing snowboarding.','Hungry Shark Evolution|🦈|Eat everything.','Talking Tom|🐱|Pet care fun.']);
+info('Emulators',['Minecraft Java on Android|⛏|PojavLauncher runs Minecraft Java on Android. Needs your own Java account.|https://pojavlauncher.app','Zalith Launcher|🚀|Newer Minecraft Java launcher for Android.|https://github.com/ZalithLauncher/ZalithLauncher','Prism Launcher|🔷|Manage Minecraft Java versions and mods on PC.|https://prismlauncher.org','HMCL|🧱|Popular Minecraft Java launcher for PC.|https://hmcl.huangyuhui.net','Minecraft Launcher|🟩|Official Minecraft downloads.|https://www.minecraft.net/download','Dolphin|🐬|GameCube and Wii emulator.|https://dolphin-emu.org','PPSSPP|🎮|PSP emulator for phone and PC.|https://www.ppsspp.org','RetroArch|🕹|One app for many retro systems.|https://www.retroarch.com','DuckStation|🦆|PlayStation 1 emulator.|https://www.duckstation.org','PCSX2|💿|PlayStation 2 emulator.|https://pcsx2.net','RPCS3|🧪|PlayStation 3 emulator.|https://rpcs3.net','Cemu|🟦|Wii U emulator.|https://cemu.info','mGBA|👾|Game Boy Advance emulator.|https://mgba.io','melonDS|🍈|Nintendo DS emulator.|https://melonds.kuribo64.net','Lemuroid|📱|Retro games on Android.|https://github.com/Swordfish90/Lemuroid','Winlator|🪟|Run Windows apps on Android.|https://github.com/brunodev85/winlator','DOSBox|💾|Old DOS games on any device.|https://www.dosbox.com','ScummVM|🗝|Classic point-and-click adventures.|https://www.scummvm.org','BlueStacks|🖥|Android emulator for PC.|https://www.bluestacks.com','LDPlayer|⚡|Android emulator for gaming on PC.|https://www.ldplayer.net','Android Emulator|🤖|Official Android Studio emulator.|https://developer.android.com/studio/run/emulator']);
+var cats=['Games','Popular Games','Classic Games','Tools','Code Tools','Creative','AI Tools','Emulators'],R='';
+cats.forEach(function(c){R+='<div class=cat id="r-'+c.replace(' ','')+'"><h2>'+c+'</h2><div class=row>'+A.map(function(a,i){return a.c==c?'<button class=t data-i='+i+' style="animation-delay:'+(.25+Math.min(i,30)*.035).toFixed(2)+'s"><span>'+a.i+'</span><b>'+a.n+'</b></button>':''}).join('')+'<button class=t data-more="'+c+'"><span>⋯</span><b>More</b></button></div></div>'});
+$('rows').innerHTML=R;
+function run(a){if(cl)cl();cl=null;$('mt').textContent=a.i+' '+a.n;var b=$('mbody');b.innerHTML='';$('md').classList.add('on');a.f(b,function(){run(a)})}
+function closeM(){if(cl)cl();cl=null;$('md').classList.remove('on')}
+function more(c){var L=A.filter(function(a){return a.c==c||(c=='Popular Games'&&a.c=='Mobile Games')});run({i:'⋯',n:c+' ('+L.length+')',f:function(e){e.innerHTML='<div class=row style="flex-wrap:wrap;justify-content:center">'+L.map(function(a){return '<button class=t data-j='+A.indexOf(a)+'><span>'+a.i+'</span><b>'+a.n+'</b></button>'}).join('')+'</div>';e.onclick=function(ev){var t=ev.target.closest('.t');if(t)run(A[+t.dataset.j])}}})}
+$('rows').onclick=function(ev){var t=ev.target.closest('.t');if(!t)return;if(t.dataset.more)more(t.dataset.more);else run(A[+t.dataset.i])};
+$('mx').onclick=closeM;$('ab').onclick=function(ev){ev.preventDefault();tg(false);run({i:'ℹ️',n:'About',f:function(e){e.innerHTML='<p>DANGER ZONE is a free hub with playable games, tools and an AI directory. Playable items open inside this site. Big titles like Forza Horizon run on their own platforms, so their pages show details plus an official link.</p>'}})};
+// ---- SEARCH
+$('q').oninput=function(){var q=this.value.trim().toLowerCase(),n=0;
+document.querySelectorAll('.t').forEach(function(t){var ok=!q||t.textContent.toLowerCase().indexOf(q)>-1;t.style.display=ok?'':'none';if(ok)n++});
+document.querySelectorAll('.cat').forEach(function(c){c.style.display=c.querySelector('.t:not([style*="none"])')?'':'none'});$('nr').style.display=n?'none':'block'};
+// ---- MENU (left)
+var mb=$('mb'),dr=$('dr'),ov=$('ov');
+function tg(o){var on=o===undefined?!dr.classList.contains('on'):o;dr.classList.toggle('on',on);ov.classList.toggle('on',on);mb.classList.toggle('on',on)}
+mb.onclick=function(){tg()};ov.onclick=function(){tg(false)};
+dr.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){tg(false)})});
+// ---- LOGIN
+function users(){try{return JSON.parse(S('dz_u')||'{}')}catch(e){return{}}}
+function ui(){var u=S('dz_s');$('lg').textContent=u?'Logout':'Login';$('dl').textContent=u?'Logout ('+u+')':'Login';$('hi').textContent=u?'Welcome back, '+u+'!':'Play, build and explore. 150+ games, tools and AI apps.'}
+function auth(){if(S('dz_s')){S('dz_s','');ui()}else{$('am2').textContent='';$('am').classList.add('on')}}
+$('lg').onclick=auth;$('gg').onclick=$('dc').onclick=function(){$('am2').textContent='Google and Discord login need a server with app keys. It will work once the Python backend is connected. Use email for now.'};$('dl').onclick=function(ev){ev.preventDefault();auth()};$('ax').onclick=function(){$('am').classList.remove('on')};
+$('asu').onclick=function(){var u=$('au').value.trim(),p=$('ap').value;if(u.indexOf('@')<1||p.length<4){$('am2').textContent='Enter a valid email and a 4+ character password';return}
+var us=users();if(us[u]){$('am2').textContent='Username already taken';return}
+sha(p).then(function(h){us[u]=h;S('dz_u',JSON.stringify(us));S('dz_s',u);$('am').classList.remove('on');ui()})};
+$('ali').onclick=function(){var u=$('au').value.trim(),p=$('ap').value;sha(p).then(function(h){if(users()[u]===h){S('dz_s',u);$('am').classList.remove('on');ui()}else $('am2').textContent='Wrong username or password'})};
+// ---- Python backend login (falls back to local demo when no server)
+function api(path,body){return fetch(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}).then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j}})})}
+function done(u){S('dz_s',u);$('am').classList.remove('on');ui()}
+function go(path){var u=$('au').value.trim(),p=$('ap').value;if(u.indexOf('@')<1||p.length<4){$('am2').textContent='Enter a valid email and a 4+ character password';return}
+api(path,{email:u,password:p}).then(function(r){if(r.ok)done(u);else $('am2').textContent=r.j.error||'Failed'}).catch(function(){sha(p).then(function(h){var us=users();if(path=='/api/signup'){if(us[u]){$('am2').textContent='Email already registered';return}us[u]=h;S('dz_u',JSON.stringify(us));done(u)}else if(us[u]===h)done(u);else $('am2').textContent='Wrong email or password'})})}
+$('asu').onclick=function(){go('/api/signup')};$('ali').onclick=function(){go('/api/login')};
+function sp(n){fetch('/api/providers').then(function(r){return r.json()}).then(function(j){if(j[n])location.href='/auth/'+n;else $('am2').textContent=n+' keys are not set on the server yet'}).catch(function(){$('am2').textContent='Social login works only when app.py is running with '+n+' keys set. Use email for now.'})}
+$('gg').onclick=function(){sp('google')};$('dc').onclick=function(){sp('discord')};
+function lo(){if(S('dz_s')){fetch('/api/logout',{method:'POST'}).catch(function(){});S('dz_s','');ui()}else{$('am2').textContent='';$('am').classList.add('on')}}
+$('lg').onclick=lo;$('dl').onclick=function(ev){ev.preventDefault();lo()};
+fetch('/api/me').then(function(r){return r.json()}).then(function(j){if(j&&j.email){S('dz_s',j.email);ui()}}).catch(function(){});
+ui();
+})();
+</script></body></html>
